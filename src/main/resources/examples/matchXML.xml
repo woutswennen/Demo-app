@@ -1,0 +1,46 @@
+<matchEvents>
+<matchInfo id="71pif9hi2vwzp6q0xzilyxst0" coverageLevel="15" date="2021-09-11Z" time="18:30:00Z" localDate="2021-09-11" localTime="20:30:00" week="6" attendanceInfoId="2" attendanceInfo="Limited Audience" numberOfPeriods="2" periodLength="45" lastUpdated="2022-08-16T18:22:51Z">
+<description>Hamburger SV vs Sandhausen</description>
+<sport id="289u5typ3vp4ifwh5thalohmq">Soccer</sport>
+<ruleset id="79plas4983031idr6vw83nuel">Men</ruleset>
+<competition id="722fdbecxzcq9788l6jqclzlw" name="2. Bundesliga" competitionCode="2.B" competitionFormat="Domestic league">
+<country id="36min0qztu8eydwvpv8t1is0m">Germany</country>
+</competition>
+<tournamentCalendar id="93wcwtf25153hracvqva88aac" startDate="2021-07-23Z" endDate="2022-05-15Z">2021/2022</tournamentCalendar>
+<stage id="9443wbz12vfz0f7ewmg8xhes4" formatId="e2q01r9o9jwiq1fls93d1sslx" startDate="2021-07-23Z" endDate="2022-05-15Z">Regular Season</stage>
+<contestants>
+<contestant id="75xi6hloabmnjn2kzgj1g8h1s" name="Hamburger SV" shortName="Hamburg" officialName="Hamburger SV" code="HSV" position="home">
+<country id="36min0qztu8eydwvpv8t1is0m">Germany</country>
+</contestant>
+<contestant id="884uzyf1wosc7ykji6e18gifp" name="Sandhausen" shortName="Sandhausen" officialName="SV Sandhausen" code="SVS" position="away">
+<country id="36min0qztu8eydwvpv8t1is0m">Germany</country>
+</contestant>
+</contestants>
+<venue id="8gaqzo8y471bfkkc3tq7ra7o" neutral="no" longName="Volksparkstadion">Volksparkstadion</venue>
+</matchInfo>
+<liveData>
+<matchDetails periodId="14" matchStatus="Played" winner="home" matchLengthMin="97" matchLengthSec="41">
+<periods>
+<period id="1" start="2021-09-11T18:30:06Z" end="2021-09-11T19:15:08Z" lengthMin="45" lengthSec="2"/>
+<period id="2" start="2021-09-11T19:34:13Z" end="2021-09-11T20:26:52Z" lengthMin="52" lengthSec="39"/>
+</periods>
+<scores>
+<ht home="0" away="0"/>
+<ft home="2" away="1"/>
+<total home="2" away="1"/>
+</scores>
+</matchDetails>
+<events>
+<event id="2328542063" eventId="1" typeId="34" periodId="16" timeMin="0" timeSec="0" contestantId="75xi6hloabmnjn2kzgj1g8h1s" outcome="1" x="0.0" y="0.0" timeStamp="2021-09-11T17:39:28.239Z" lastModified="2021-09-11T17:39:10Z">
+<qualifier id="3087870323" qualifierId="130" value="4"/>
+<qualifier id="3087870311" qualifierId="30" value="8b60vtt1stnmt2uoj0f4lh49h, ci4pwzieoc94uj3i1371bsatx, 46vr35g415omy60ahbiv40wk5, apdrig6xt1hxub1986s3uh1x, n82tdzb1liltoe33f5p6xbhm, do9g7p0jtcfngmvq1uzy2tqdx, 8metzwuemi3edqhsv2pnqqbx1, 2nrmndj0uq3f46c2cb1fbf85, e7if3ma2jblaurrokcxadk0k5, aksjicf4keobpav3tuujngell, enpnulwzdxetukh80iwyazkk5, 3xq9irm7o2mp3zdlw4qt5plka, etfmz143p0d2yowiiijd8g6sq, 7b9gqjq7z692znpoklj7c057u, 4tufo2e9tsw24l2cx7m5b6xh, 3mp7p8tytgkbwi8itxl5mfkrt, 1px9whllb1pnprmgq4fjw3qhh, bhshqnrzmdjbqhtr8rcy7tca2, 4o4sv7lm8h0qvwiv81enhjv1l, 9ed74dfr9aeuedaf63l0i7aei"/>
+<qualifier id="3087870335" qualifierId="194" value="do9g7p0jtcfngmvq1uzy2tqdx"/>
+<qualifier id="3087870315" qualifierId="44" value="1, 2, 2, 3, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5"/>
+<qualifier id="3087870339" qualifierId="197" value="4938"/>
+<qualifier id="3087870319" qualifierId="59" value="1, 2, 21, 23, 34, 4, 6, 3, 9, 19, 10, 8, 11, 14, 16, 18, 28, 41, 44, 48"/>
+<qualifier id="3087870329" qualifierId="131" value="1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0"/>
+<qualifier id="3087870343" qualifierId="227" value="0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"/>
+</event>
+</events>
+</liveData>
+</matchEvents>

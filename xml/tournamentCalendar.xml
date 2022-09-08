@@ -1,0 +1,40 @@
+<tournamentCalendars xmlns:soccerdata="http://www.performgroup.com/schema/soccerdata" lastUpdated="2022-08-30T09:36:10Z">
+<competition id="2bv3vanywkunm4bzt7i3121l1" ocId="1093" name="Premier League" competitionCode="APL" displayOrder="10" country="Afghanistan" countryId="6xne7xe59eujck02uovziom7p" countryCode="AFG" isFriendly="no" competitionFormat="Domestic league" type="men" competitionType="club">
+<tournamentCalendar id="4l28exe3waio69jy64mjdxs7o" includesVenues="yes" ocId="19466" name="2021" startDate="2021-09-24Z" endDate="2021-10-16Z" active="no" lastUpdated="2021-08-26T15:39:09Z" includesStandings="yes"/>
+<tournamentCalendar id="e8hzqbi72543ryyghslghobqi" includesVenues="yes" ocId="18123" name="2020" startDate="2020-09-24Z" endDate="2020-10-16Z" active="yes" lastUpdated="2021-05-24T18:44:18Z" includesStandings="yes"/>
+<tournamentCalendar id="2g6i2p41v9rz893ct7p9jg7sa" includesVenues="yes" ocId="16697" name="2019" startDate="2019-08-20Z" endDate="2019-09-20Z" active="no" lastUpdated="2021-05-24T18:44:18Z" includesStandings="yes"/>
+<tournamentCalendar id="6cp74s0vw1qkx2ua9kie2v7my" includesVenues="yes" ocId="14963" name="2018" startDate="2018-10-07Z" endDate="2018-10-25Z" active="no" lastUpdated="2021-05-24T18:44:18Z" includesStandings="yes"/>
+<tournamentCalendar id="5nam60xs3poa2onuqwbdnse09" includesVenues="yes" ocId="13198" name="2017" startDate="2017-09-07Z" endDate="2017-10-27Z" active="no" lastUpdated="2021-05-24T18:44:18Z" includesStandings="yes"/>
+<tournamentCalendar id="bcv63kirnvqh75te5ltqfzvft" includesVenues="yes" ocId="12091" name="2016" startDate="2016-08-25Z" endDate="2016-09-30Z" active="no" lastUpdated="2021-05-24T18:44:18Z" includesStandings="yes"/>
+<tournamentCalendar id="cymioxyqua6ltsjy93qge221h" includesVenues="yes" ocId="10891" name="2015" startDate="2015-08-27Z" endDate="2015-10-02Z" active="no" lastUpdated="2021-05-24T18:44:18Z" includesStandings="yes"/>
+<tournamentCalendar id="5pyqa181noyaj6yummryl580l" includesVenues="yes" ocId="8868" name="2014" startDate="2014-08-28Z" endDate="2014-10-03Z" active="no" lastUpdated="2021-05-24T18:44:18Z" includesStandings="yes"/>
+<tournamentCalendar id="58zm0gcrhk7afjgkir2bqf86z" includesVenues="yes" ocId="7851" name="2013" startDate="2013-08-22Z" endDate="2013-10-11Z" active="no" lastUpdated="2021-05-24T18:44:18Z" includesStandings="yes"/>
+<tournamentCalendar id="9v52v8aya4djwvht15hwiawgl" includesVenues="yes" ocId="7816" name="2012" startDate="2012-09-18Z" endDate="2012-10-19Z" active="no" lastUpdated="2021-05-24T18:44:18Z" includesStandings="yes"/>
+</competition>
+<competition id="68zplepppndhl8bfdvgy9vgu1" ocId="385" opId="190" name="Africa Cup of Nations" competitionCode="ACO" displayOrder="10" country="Africa" countryId="7ye7ksf2tpqaauihjdiuqi6s5" isFriendly="no" competitionFormat="International cup" type="men" competitionType="international">
+<tournamentCalendar id="d8grid5nhzleybw2n5cpccxsk" includesVenues="yes" ocId="21250" name="2023 Côte d'Ivoire" startDate="2024-01-09Z" endDate="2024-02-06Z" active="no" lastUpdated="2022-04-11T10:49:03Z" includesStandings="yes"/>
+<tournamentCalendar id="3ny27xml9skko03pycmbrv52i" includesVenues="yes" ocId="17985" name="2021 Cameroon" startDate="2022-01-09Z" endDate="2022-02-06Z" active="yes" lastUpdated="2022-07-13T12:32:21Z" includesStandings="yes"/>
+<tournamentCalendar id="2ip4f1aefabczfkw80hj7uz8p" includesVenues="yes" ocId="13580" name="2019 Egypt" startDate="2019-06-21Z" endDate="2019-07-19Z" active="no" lastUpdated="2022-07-13T08:44:11Z" includesStandings="yes"/>
+<tournamentCalendar id="myycohvvibz2uugf7m915uy1" includesVenues="yes" ocId="11664" name="2017 Gabon" startDate="2017-01-14Z" endDate="2017-02-05Z" active="no" lastUpdated="2022-07-13T08:44:11Z" includesStandings="yes"/>
+<tournamentCalendar id="72ffk1yqe771z7hn5kp5tqj85" includesVenues="yes" ocId="8069" name="2015 Equatorial Guinea" startDate="2015-01-17Z" endDate="2015-02-08Z" active="no" lastUpdated="2022-07-13T08:44:11Z" includesStandings="yes"/>
+<tournamentCalendar id="enzgl8gvt6j9h7xivf8uf2c63" includesVenues="yes" ocId="7093" name="2013 South Africa" startDate="2013-01-19Z" endDate="2013-02-10Z" active="no" lastUpdated="2022-07-12T11:13:19Z" includesStandings="yes"/>
+<tournamentCalendar id="csywcm1os1kpjbwx3ko092fo5" includesVenues="yes" ocId="4965" name="2012 Equatorial Guinea/Gabon" startDate="2012-01-21Z" endDate="2012-02-12Z" active="no" lastUpdated="2022-07-13T02:00:37Z" includesStandings="yes"/>
+<tournamentCalendar id="3k34993llkdmhfmczy1yibk5x" includesVenues="yes" ocId="4807" name="2010 Angola" startDate="2010-01-10Z" endDate="2010-01-31Z" active="no" lastUpdated="2022-07-13T08:44:11Z" includesStandings="yes"/>
+</competition>
+<competition id="5c96g1zm7vo5ons9c42uy2w3r" ocId="49" opId="119" name="Bundesliga" competitionCode="BUN" displayOrder="10" country="Austria" countryId="hcs1bd49qliqqity6o268jyt" countryCode="AUT" isFriendly="no" competitionFormat="Domestic league" type="men" competitionType="club">
+<tournamentCalendar id="b0r2dzuwepenhesbl5yrnhr10" includesVenues="yes" ocId="21761" name="2022/2023" startDate="2022-07-22Z" endDate="2023-05-29Z" active="yes" lastUpdated="2022-07-13T07:39:57Z" includesStandings="yes"/>
+<tournamentCalendar id="29p4usgcyyx23x1gjpiksz310" includesVenues="yes" ocId="20267" name="2021/2022" startDate="2021-07-23Z" endDate="2022-05-29Z" active="no" lastUpdated="2022-07-13T13:15:01Z" includesStandings="yes"/>
+<tournamentCalendar id="8o5hjwtoaw9q3ndqmrjnmuzqi" includesVenues="yes" ocId="19162" name="2020/2021" startDate="2020-09-11Z" endDate="2021-05-30Z" active="no" lastUpdated="2022-07-13T07:39:57Z" includesStandings="yes"/>
+<tournamentCalendar id="ctfh5dj2fz5k1b8j47teyvtre" includesVenues="yes" ocId="17692" name="2019/2020" startDate="2019-07-26Z" endDate="2020-07-15Z" active="no" lastUpdated="2022-07-13T12:56:45Z" includesStandings="yes"/>
+<tournamentCalendar id="mxpatyt4ac9z6zj6bfft5o4q" includesVenues="yes" ocId="16048" name="2018/2019" startDate="2018-07-27Z" endDate="2019-06-02Z" active="no" lastUpdated="2022-07-13T12:56:45Z" includesStandings="yes"/>
+<tournamentCalendar id="csa3hmkyraiqqi5rqde694auh" includesVenues="yes" ocId="14173" name="2017/2018" startDate="2017-07-22Z" endDate="2018-05-27Z" active="no" lastUpdated="2022-07-13T12:56:45Z" includesStandings="yes"/>
+<tournamentCalendar id="db527mupvcqjvv2tbj9bis3xl" includesVenues="yes" ocId="12618" name="2016/2017" startDate="2016-07-23Z" endDate="2017-05-28Z" active="no" lastUpdated="2022-07-12T23:45:25Z" includesStandings="yes"/>
+<tournamentCalendar id="8lpgu2bq62omyzlbzoqgksfe1" includesVenues="yes" ocId="11720" name="2015/2016" startDate="2015-07-25Z" endDate="2016-05-15Z" active="no" lastUpdated="2022-07-12T23:45:25Z" includesStandings="yes"/>
+<tournamentCalendar id="768shvekwoitqiqrz669460x4" includesVenues="yes" ocId="9755" name="2014/2015" startDate="2014-07-19Z" endDate="2015-05-31Z" active="no" lastUpdated="2022-07-12T23:45:25Z" includesStandings="yes"/>
+<tournamentCalendar id="2x8otunt08e2g98hc8hhnhjce" includesVenues="yes" ocId="8464" name="2013/2014" startDate="2013-07-20Z" endDate="2014-05-12Z" active="no" lastUpdated="2022-07-12T23:45:25Z" includesStandings="yes"/>
+<tournamentCalendar id="16vxajtpbcwgd4qk6gc7cz9w5" includesVenues="yes" ocId="7206" name="2012/2013" startDate="2012-07-21Z" endDate="2013-05-26Z" active="no" lastUpdated="2022-07-12T23:45:25Z" includesStandings="yes"/>
+<tournamentCalendar id="5vdbkhzce5bkis951tjudcq8l" includesVenues="yes" ocId="5956" name="2011/2012" startDate="2011-07-16Z" endDate="2012-05-17Z" active="no" lastUpdated="2022-07-12T23:45:25Z" includesStandings="yes"/>
+<tournamentCalendar id="jx6pe1py93x45rw97uimp591" includesVenues="yes" ocId="5115" name="2010/2011" startDate="2010-07-17Z" endDate="2011-05-25Z" active="no" lastUpdated="2022-07-13T07:39:57Z" includesStandings="yes"/>
+<tournamentCalendar id="3a8iivcj1h8tjy1f4b8qy6gut" includesVenues="yes" ocId="3485" name="2009/2010" startDate="2009-07-17Z" endDate="2010-05-13Z" active="no" lastUpdated="2022-07-13T07:39:57Z" includesStandings="yes"/>
+</competition>
+</tournamentCalendars>

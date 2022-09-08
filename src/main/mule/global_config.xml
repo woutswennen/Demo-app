@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+	
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e3c529ee-75c4-4ed5-98f6-a86cfe807a00" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+		<http:listener-interceptors >
+			<http:cors-interceptor allowCredentials="true" >
+				<http:origins >
+					<http:public-resource />
+				</http:origins>
+			</http:cors-interceptor>
+		</http:listener-interceptors>
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="4745a801-6041-439a-9352-ffc9daa774d4" >
+		<http:request-connection host="api.performfeeds.com" />
+	</http:request-config>
+	<http:request-config name="yourself" doc:name="HTTP Request configuration" doc:id="4c2d9206-8fac-48b6-b75a-09a366d12bd8" >
+		<http:request-connection host="localhost" port="8081" />
+	</http:request-config>
+	<os:object-store name="Object_store" doc:name="Object store" doc:id="56709b38-d282-465c-86a1-b1d2edef749f" />
+	<configuration-properties doc:name="Configuration properties" doc:id="bf81dd6b-6d5a-4ed9-aee3-3d78389431d7" file="dev.yaml" />
+	
+	
+	
+</mule>

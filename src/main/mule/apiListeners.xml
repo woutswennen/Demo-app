@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+	
+	<flow name="getUpcommingMatchesFormatted" doc:id="c01821b9-104c-49c6-93e3-1cdb8847fcfd">
+		<http:listener doc:name="/api/upcomming" doc:id="4e081df0-f34f-47f6-b441-de452684e2fb" config-ref="HTTP_Listener_config" path="/api/upcomming" />
+		<flow-ref doc:name="Flow Reference" doc:id="8ea1ab91-042c-42f0-a4fd-cf8ae31a518d" name="getUpcommingMatches"/>
+		<ee:transform doc:name="Transform Message" doc:id="fe58d4c3-a3d9-490d-b5f5-09885b1c4599">
+			<ee:message>
+				<ee:set-payload resource="formatted_upcomming.dwl" />
+			</ee:message>
+			
+		</ee:transform>
+	</flow>
+	<flow name="getScoreApi" doc:id="414bae12-3d9c-4ac7-a226-5aa19e4ea18b" >
+		<http:listener doc:name="/api/livescores" doc:id="ba522ab8-58bf-4022-8a54-6b9ef9654f9a" config-ref="HTTP_Listener_config" path="/api/livescores"/>
+		<os:retrieve doc:name="Retrieve" doc:id="0b7b4fc4-1546-43be-a371-0708dcfdfb78" key="scores" objectStore="Object_store">
+			<os:default-value ><![CDATA[#[{
+    "liveMatchCount": 0,
+    "liveMatches": []
+}]]]></os:default-value>
+		</os:retrieve>
+		<ee:transform doc:name="Transform Message" doc:id="4433b544-6ba3-48dd-bdf6-8933cc8c0999" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>	
+	
+	
+</mule>

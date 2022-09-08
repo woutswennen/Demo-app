@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+	<flow name="scheduler_update_todays_matches" doc:id="1efed301-497b-4246-8fb4-249a4ba72cbf">
+		<scheduler doc:name="Every morning" doc:id="67b37eee-2f88-4bbd-b9ab-4f3e3c7e8f4f">
+			<scheduling-strategy>
+				<fixed-frequency frequency="24" timeUnit="HOURS" />
+			</scheduling-strategy>
+		</scheduler>
+		<flow-ref doc:name="Flow Reference" doc:id="27331012-e8f8-4a08-89ac-27d6cfc7462a" name="getMatches"/>
+		<os:store doc:name="Store" doc:id="a42ced85-d477-43db-bd27-e04b0941cefd" key="today_schedule" objectStore="Object_store" />
+	</flow>
+	<flow name="getMatches" doc:id="cc87862c-14e7-4209-9e00-b076b3e7d1f9" >
+		<set-variable doc:name="SHOULD BE NOW IN PRODUCTION" doc:id="1cc5cb81-d3fa-4953-91b3-0b98076cc093" variableName="date" value="2017-07-28Z"/>
+		<http:request method="GET" doc:name="/soccerdata/tournamentschedule" doc:id="a3de9422-20b6-4d0a-ad01-37feb84d8005" path="#[&quot;/soccerdata/tournamentschedule/1vmmaetzoxkgg1qf6pkpfmku0k/&quot; ++ p('activeCompetition.id') ++ &quot;?_fmt=xml&amp;_rt=b&quot;]" config-ref="HTTP_Request_configuration">
+		</http:request>
+		<ee:transform doc:name="Match transform with date" doc:id="b06ad4d3-697a-4a72-a78a-da0a28cb431f">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	date: payload.tournamentSchedule.*matchDate filter($.@date == vars.date) map((matchDateObject, x) -> {
+			    matchDate: matchDateObject.@date,
+			    matchCount: matchDateObject.@numberOfGames,
+			    matches: matchDateObject.*match map{
+			        home: $.@homeContestantName,
+			        away: $.@awayContestantName,
+			        datetime: matchDateObject.@date[0 to -2] ++ "/" ++ $.@time[0 to -2] ++ "+0000",
+			        matchId: $.@id
+			    }
+			})
+	
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	
+</mule>

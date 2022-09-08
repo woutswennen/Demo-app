@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+
+<flow name="getUpcommingMatches" doc:id="9573aed0-60f2-413b-a58d-5ee195524c0f" >
+		<set-variable value="2017-12-16Z" doc:name="SHOULD BE NOW() IN PRODUCTION" doc:id="f95b5316-fd36-4821-b6f1-3ef673925db6" variableName="date" />
+		<flow-ref doc:name="getAllMatches" doc:id="9fd310a7-60d7-48db-bc0a-ec3ddc95e55f" name="getAllMatches"/>
+		<ee:transform doc:name="Games after date" doc:id="5f742f16-947e-4969-805e-f803c34d64fc" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+
+---
+{
+	"count": 0,
+	"min": ${upcomming.min},
+	"found": [],
+	"rest": payload.dates filter($.matchDate > vars.date) map{
+		
+	
+		  "matchDate": $.matchDate,
+		  "matchCount": $.matchCount,
+		  "matches": $.matches
+	    
+	}
+	
+}
+
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<flow-ref doc:name="recursiveCountUpcommingMatches" doc:id="912a8600-d66d-4e94-8ef5-290588d37878" name="recursiveCountUpcommingMatches"/>
+	</flow>
+	<flow name="recursiveCountUpcommingMatches" doc:id="e3ae2d4d-4a51-4c25-b103-bdc7fd5d51b0" >
+		<ee:transform doc:name="Transform Message" doc:id="05a924da-4d12-46b3-a150-c9fbae6bbc02" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"count": (payload.count + payload.rest[0].matchCount),
+	"min": payload.min,
+	"found": payload.found << payload.rest[0],
+	"rest": payload.rest[1 to -1]
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<choice doc:name="Choice" doc:id="c3c27a5d-79ac-425e-9db5-cec80a67f05b" >
+			<when expression="#[payload.count &gt;= payload.min or sizeOf(payload.rest) == 0]">
+				<ee:transform doc:name="Transform To output" doc:id="4f82b33c-10f1-49ee-9787-6ffcdea16c14" >
+					<ee:message >
+						<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	dates: payload.found
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+			</when>
+			<otherwise >
+				<flow-ref doc:name="recursiveCountUpcommingMatches" doc:id="98cfea90-2488-4b43-9463-db8ff70f030d" name="recursiveCountUpcommingMatches"/>
+			</otherwise>
+		</choice>
+	</flow>
+	<flow name="getAllMatches" doc:id="2d24d172-a78b-49c6-a9da-128db78f5e17">
+		<http:request method="GET" doc:name="/soccerdata/tournamentschedule" doc:id="3c4c10f0-00d9-4a57-a787-ef9518d7ce7e" path="#[&quot;/soccerdata/tournamentschedule/1vmmaetzoxkgg1qf6pkpfmku0k/&quot; ++ p('activeCompetition.id') ++ &quot;?_fmt=xml&amp;_rt=b&quot;]" config-ref="HTTP_Request_configuration">
+		</http:request>
+		<ee:transform doc:name="Match transform with date" doc:id="cdf1ead7-1570-4cd1-a15f-6b90d44868c4">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	dates: payload.tournamentSchedule.*matchDate map((matchDateObject, x) -> {
+			    matchDate: matchDateObject.@date,
+			    matchCount: matchDateObject.@numberOfGames,
+			    matches: matchDateObject.*match map{
+			        home: $.@homeContestantName,
+			        away: $.@awayContestantName,
+			        datetime: matchDateObject.@date[0 to -2] ++ "/" ++ $.@time[0 to -2] ++ "+0000",
+			        matchId: $.@id
+			    }
+			})
+	
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	
+</mule>

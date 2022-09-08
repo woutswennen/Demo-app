@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_344b29aa_81a6_46fa_aef5_e9f61f12e078_Output_Variables_result = Array<Nothing>
+

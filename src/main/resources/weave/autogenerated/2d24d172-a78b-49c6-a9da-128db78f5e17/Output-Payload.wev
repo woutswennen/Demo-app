@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_2d24d172_a78b_49c6_a9da_128db78f5e17_Output_Payload = {| date: Any |}
+

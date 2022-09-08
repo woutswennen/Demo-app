@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+
+	
+	
+	
+	<flow name="store_live_matches_score" doc:id="809e6114-5160-4ac0-906c-b2804545d2c7" >
+		<scheduler doc:name="1 minute" doc:id="b489bd1d-425b-4b90-a868-7f47f5c80045" >
+			<scheduling-strategy >
+				<fixed-frequency timeUnit="MINUTES" frequency="1" startDelay="1"/>
+			</scheduling-strategy>
+		</scheduler>
+		<logger level="INFO" doc:name="Scheduler started" doc:id="cff218b2-7ea3-4f79-b65b-12cb8c852288" message="Scheduler started"/>
+		<os:retrieve doc:name="Retrieve" doc:id="c6f011fc-2cf5-4f07-b110-6666a267189f" key="today_schedule" objectStore="Object_store"/>
+		<logger level="INFO" doc:name="Payload" doc:id="775c7ed5-9edf-4e6d-af92-8ea4c26d6288" message="#[payload]"/>
+		<ee:transform doc:name="Change todays games to accesible games" doc:id="4648484f-8603-4629-bdfe-0567927e7bc7" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    "date": [
+        {
+            "matchDate": "2022-09-06Z",
+            "matchCount": "1",
+            "matches": [
+            	{
+                    "home": "Bochum",
+                    "away": "St. Pauli",
+                    "datetime": "2022-09-06/13:30:00+0000",
+                    "matchId": "71pif9hi2vwzp6q0xzilyxst0"
+                }
+                
+            ]
+        }
+    ]
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Transform array to json object" doc:id="47972360-d198-4ff6-95b1-957d90d94cb3">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload.date[0]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<set-variable value="#[[]]" doc:name="Result" doc:id="d8f19b05-b7e9-4e1b-9c00-775d21c6548a" variableName="result"/>
+		<foreach doc:name="Loop every match today" doc:id="ffcef17f-4208-42b0-b30f-85acdc9dd648" collection="#[payload.matches]" >
+			<ee:transform doc:name="Live Matches" doc:id="c20c000e-a119-4625-8c16-468002b5ba6c" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+var startTime = payload.datetime as DateTime {format: "yyyy-MM-dd/HH:mm:ssZ"}
+var nowTime = now() >> "UTC"
+---
+{
+	matchId: payload.matchId,
+    live: nowTime > startTime and nowTime < startTime + |PT90M|,
+    now_time: nowTime as String{format: "HH:mm"},
+    start_time: startTime as String {format: "HH:mm"} 
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+			<choice doc:name="Choice" doc:id="af2ed570-7f4d-49a5-a37d-fa3626528616" >
+				<when expression='#[payload.live]'>
+					<flow-ref doc:name="Flow Reference" doc:id="4160e7fd-e706-48da-8297-7b5212de6e66" name="getMatchInfo"/>
+					<ee:transform doc:name="Transform Message" doc:id="c9e81202-c3ee-4dcf-a426-384ef5bcaba3" >
+						<ee:message >
+							<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+vars.result << payload]]></ee:set-payload>
+						</ee:message>
+					</ee:transform>
+					<set-variable value="#[payload]" doc:name="Set Variable" doc:id="07e7666d-11ea-470b-9d32-2afdd36e60c9" variableName="result"/>
+				</when>
+				<otherwise >
+					<logger level="INFO" doc:name="Found no active match" doc:id="8db8eda1-3e19-4f68-afe2-a0facf515ff4" message="Found no active match"/>
+				</otherwise>
+			</choice>
+		</foreach>
+		<ee:transform doc:name="Match metadata to match score" doc:id="b6d9d49b-154d-408b-8525-2f5558f9e275" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  "liveMatchCount": sizeOf(vars.result),
+  "liveMatches": vars.result
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Result Log" doc:id="ffcda500-a9d3-41f3-bc8c-d4b69eacf3e7" message="#[payload]"/>
+		<os:store doc:name="Store" doc:id="ef47f584-bda1-4ad9-a0e7-3d923c850650" key="scores" objectStore="Object_store"/>
+	</flow>
+	
+	
+	<flow name="getMatchInfo" doc:id="344b29aa-81a6-46fa-aef5-e9f61f12e078" >
+		<http:request method="GET" doc:name="/soccerdata/matchevent" doc:id="cd6f182d-3508-43c6-8ffb-c0587ae1c595" config-ref="HTTP_Request_configuration" path='#["/soccerdata/matchevent/1vmmaetzoxkgg1qf6pkpfmku0k/" ++ payload.matchId ++ "?_fmt=xml&amp;_rt=b"]'/>
+		<ee:transform doc:name="Transform Message" doc:id="d7ecf042-b55a-43dd-94fb-859f710e3128" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    contestants:   {
+        home: payload.matchEvents.matchInfo.contestants[0].@name,
+        away: payload.matchEvents.matchInfo.contestants[1].@name
+    }, 
+    scores: payload.matchEvents.liveData.matchDetails.scores.total.@
+
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
+	

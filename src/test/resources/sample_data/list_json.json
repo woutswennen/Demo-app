@@ -1,0 +1,62 @@
+{
+  "count": 1,
+  "min": 4,
+  "found": [
+    {
+      "matchDate": "2017-08-09Z",
+      "matchCount": "1",
+      "matches": [
+        {
+          "home": "Heidenheim",
+          "away": "Erzgebirge Aue",
+          "datetime": "2017-08-09/18:00:00+0000",
+          "matchId": "4u6qyytmtmdcn6gdpg6ze6zca"
+        }
+      ]
+    }
+  ],
+  "rest": [
+    {
+      "matchDate": "2017-08-18Z",
+      "matchCount": "2",
+      "matches": [
+        {
+          "home": "Darmstadt 98",
+          "away": "St. Pauli",
+          "datetime": "2017-08-18/16:30:00+0000",
+          "matchId": "4vhdzf5qz5w9bdmscfj43scq2"
+        },
+        {
+          "home": "Eintracht Braunschweig",
+          "away": "Erzgebirge Aue",
+          "datetime": "2017-08-18/16:30:00+0000",
+          "matchId": "4vjzepqo2x58ob26ctmvz5q3u"
+        }
+      ]
+    },
+    {
+      "matchDate": "2017-08-19Z",
+      "matchCount": "3",
+      "matches": [
+        {
+          "home": "Dynamo Dresden",
+          "away": "Sandhausen",
+          "datetime": "2017-08-19/11:00:00+0000",
+          "matchId": "4vmn7nangzgwu0jed5d3cxroq"
+        },
+        {
+          "home": "Heidenheim",
+          "away": "MSV Duisburg",
+          "datetime": "2017-08-19/11:00:00+0000",
+          "matchId": "4vpgwror8slx5dgd9b8pq6yju"
+        },
+        {
+          "home": "Fortuna Düsseldorf",
+          "away": "Kaiserslautern",
+          "datetime": "2017-08-19/11:00:00+0000",
+          "matchId": "4vs9f817ayl5rb4daaytgmwkq"
+        }
+      ]
+    }
+  ]
+}
